@@ -9,6 +9,7 @@
 
   <!-- Le styles -->
   <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
 
   <style>
       body {
@@ -32,6 +33,7 @@
 
 <body>
 
+<!-- Menu Navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
@@ -48,7 +50,8 @@
 
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li class="active"><a href="#">Home</a></li>
+          <li class="divider-vertical"></li>
+          <li><a href="/archivos">Archivo</a></li>
           <li class="divider-vertical"></li>
           <li><a href="#about">About</a></li>
           <li class="divider-vertical"></li>
@@ -72,22 +75,12 @@
     </div>
   </div>
 </div>
-<script>
-    $(document).ready(function()
-    {
-        //Handles menu drop down
-        $('.dropdown-menu').find('form').click(function (e) {
-            e.stopPropagation();
-        });
-    });
-</script>
+<!-- End Menu Navbar -->
 
 <div class="container">
-
-  <h1>Administracion Documentos 2013</h1>
-  <p>Sistemas de administracion de documentos, secretaria y archivo.<br> Direccion Regional Sectorial de vivienda Construccion y Sabeamiento.</p>
-
-</div> <!-- /container -->
+    <%= yield %>
+</div>
+<!-- /container -->
 
 <!-- Le javascript
 ================================================== -->

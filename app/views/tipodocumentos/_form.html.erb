@@ -1,0 +1,29 @@
+<%= form_for(@tipodocumento) do |f| %>
+  <% if @tipodocumento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tipodocumento.errors.count, "error") %> prohibited this tipodocumento from being saved:</h2>
+
+      <ul>
+      <% @tipodocumento.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :descripcion %><br />
+    <%= f.text_field :descripcion %>
+  </div>
+  <div class="field">
+    <%= f.label :tipodocumentoimg %><br />
+    <%= f.text_field :tipodocumentoimg %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

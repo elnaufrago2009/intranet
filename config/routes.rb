@@ -1,4 +1,13 @@
 Intranet::Application.routes.draw do
+  resources :tipodocumentos
+
+
+  resources :archivos
+
+
+  resources :documentos
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

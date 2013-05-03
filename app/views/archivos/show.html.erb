@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @archivo.nombre %>
+</p>
+
+<p>
+  <b>Resumen:</b>
+  <%= @archivo.resumen %>
+</p>
+
+<p>
+  <b>Contenido:</b>
+  <%= @archivo.contenido %>
+</p>
+
+<p>
+  <b>Tipodocumento:</b>
+  <%= @archivo.tipodocumento_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_archivo_path(@archivo) %> |
+<%= link_to 'Back', archivos_path %>

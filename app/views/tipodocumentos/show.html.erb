@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @tipodocumento.nombre %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @tipodocumento.descripcion %>
+</p>
+
+<p>
+  <b>Tipodocumentoimg:</b>
+  <%= @tipodocumento.tipodocumentoimg %>
+</p>
+
+
+<%= link_to 'Edit', edit_tipodocumento_path(@tipodocumento) %> |
+<%= link_to 'Back', tipodocumentos_path %>
