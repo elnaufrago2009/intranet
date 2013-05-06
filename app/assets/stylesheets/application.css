@@ -10,4 +10,5 @@
  *
  *= require_self
  *= require front_end
+ *= require file_upload
  */

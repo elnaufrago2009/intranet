@@ -1,20 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Nombre:</b>
-  <%= @tipodocumento.nombre %>
-</p>
-
-<p>
-  <b>Descripcion:</b>
-  <%= @tipodocumento.descripcion %>
-</p>
+<div class="page-header">
+	<h1><%= @tipodocumento.nombre %></h1>
+</div>
 
 <p>
   <b>Tipodocumentoimg:</b>
   <%= @tipodocumento.tipodocumentoimg %>
 </p>
 
+<div class="form-actions">
+	<%= link_to 'Editar', edit_tipodocumento_path(@tipodocumento), :class => "btn btn-primary" %>
+	<%= link_to 'Regresar', tipodocumentos_path, :class => "btn btn-primary" %>
+</div>
 
-<%= link_to 'Edit', edit_tipodocumento_path(@tipodocumento) %> |
-<%= link_to 'Back', tipodocumentos_path %>

@@ -2,11 +2,14 @@
   <h1>Ultimos Archivos <small>Subidos</small></h1>
 </div>
 
+
 <table class="table table-striped table-bordered">
   <tr>
     <th>#Id</th>
     <th>Nombre</th>
-    <th>Tipodocumento</th>
+    <th>Creado</th>
+    <th>Actualizado</th>
+    <th>Tipo</th>
     <th>Acciones</th>
   </tr>
 
@@ -14,11 +17,14 @@
   <tr>
     <td><%= archivo.id %></td>
     <td><%= archivo.nombre %></td>
-    <td><%= archivo.tipodocumento_id %></td>
+    <td><%= archivo.created_at.strftime("%d %b. %Y") %></td>
+    <td><%= archivo.updated_at.strftime("%d %b. %Y") %></td>
+    <td><%= archivo.tipodocumento['nombre'] %></td>
     <td>
+      <%= link_to 'Add', "/documentos?aid=#{archivo.id}", :class => "btn" %>
       <%= link_to 'Ver', archivo, :class => "btn" %>
       <%= link_to 'Editar', edit_archivo_path(archivo), :class => "btn" %>
-      <%= link_to 'Del', archivo, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn" %>
+      <%= link_to 'Borrar', archivo, method: :delete, data: { confirm: 'Estas Seguro que deseas Borrar ?' }, :class => "btn" %>
     </td>
   </tr>
 <% end %>
@@ -27,4 +33,3 @@
 <div class="form-action">
   <%= link_to 'Nuevo Archivo', new_archivo_path, :class => "btn btn-primary" %>
 </div>
-

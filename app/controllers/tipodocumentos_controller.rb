@@ -1,6 +1,7 @@
 class TipodocumentosController < ApplicationController
   # GET /tipodocumentos
   # GET /tipodocumentos.json
+  layout "front_end"
   def index
     @tipodocumentos = Tipodocumento.all
 

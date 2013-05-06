@@ -1,8 +1,7 @@
-<%= form_for(@documento) do |f| %>
+<%= form_for(@documento, :html => {:class => "form-horizontal", :multipart => true}) do |f| %>
   <% if @documento.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@documento.errors.count, "error") %> prohibited this documento from being saved:</h2>
-
       <ul>
       <% @documento.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,27 +10,40 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nombre %><br />
-    <%= f.text_field :nombre %>
+
+
+  <div class="control-group">
+      <div class="control-label">
+        <%= f.label :documento %>
+      </div>
+      <div class="controls">
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+          <div class="fileupload-new thumbnail" style="max-width: 200px; max-height: 150px;">
+            <% if @documento.documentoimg? %>
+                <%= image_tag(@documento.documentoimg_url) %>
+            <% else %>
+                <%= image_tag "200x150.gif"  %>
+            <% end %>
+          </div>
+          <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+          <div>
+          <span class="btn btn-file">
+            <span class="fileupload-new">Select image</span>
+            <span class="fileupload-exists">Change</span>
+            <%= f.file_field :documentoimg %>
+          </span>
+            <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+          </div>
+        </div>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :descripcion %><br />
-    <%= f.text_field :descripcion %>
+
+  <%= f.hidden_field :archivo_id, :value => "#{params[:aid]}" %>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit :class => "btn" %>
+    </div>    
   </div>
-  <div class="field">
-    <%= f.label :documentoimg %><br />
-    <%= f.text_field :documentoimg %>
-  </div>
-  <div class="field">
-    <%= f.label :tipoformato %><br />
-    <%= f.text_field :tipoformato %>
-  </div>
-  <div class="field">
-    <%= f.label :archivo_id %><br />
-    <%= f.number_field :archivo_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>

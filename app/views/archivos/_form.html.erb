@@ -2,7 +2,6 @@
   <% if @archivo.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@archivo.errors.count, "error") %> prohibited this archivo from being saved:</h2>
-
       <ul>
       <% @archivo.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,17 +10,14 @@
     </div>
   <% end %>
 
-    <div class="control-group">
-      <div class="control-label">
-        <%= f.label :tipodocumento_id %>
-      </div>
-      <div class="controls">
-        <%= f.select(:tipodocumento_id, [
-                ['memo'],
-                ['oficio']
-        ]) %>
-      </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :tipodocumento_id %>
     </div>
+    <div class="controls">
+      <%= f.collection_select(:tipodocumento_id, Tipodocumento.all, :id, :nombre, :prompt => 'Seleccion Tipo') %>
+    </div>
+  </div>
 
   <div class="control-group">
     <div class="control-label">

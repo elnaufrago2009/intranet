@@ -1,25 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Nombre:</b>
-  <%= @archivo.nombre %>
-</p>
+<div class="page-header">
+	<h1><%= @archivo.nombre %></h1>
+</div>
 
 <p>
-  <b>Resumen:</b>
-  <%= @archivo.resumen %>
+  <b>Tipo Documento:</b>
+  <%= @archivo.tipodocumento['nombre'] %>
 </p>
 
-<p>
-  <b>Contenido:</b>
-  <%= @archivo.contenido %>
-</p>
-
-<p>
-  <b>Tipodocumento:</b>
-  <%= @archivo.tipodocumento_id %>
-</p>
+<div class="form-actions">
+	<%= link_to 'Editar', edit_archivo_path(@archivo), :class => "btn btn-primary" %>
+	<%= link_to 'Regresar', archivos_path, :class => "btn btn-primary" %>
+</div>
 
 
-<%= link_to 'Edit', edit_archivo_path(@archivo) %> |
-<%= link_to 'Back', archivos_path %>
+
+
+

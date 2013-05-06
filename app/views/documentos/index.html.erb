@@ -1,31 +1,18 @@
-<h1>Listing documentos</h1>
-
-<table>
-  <tr>
-    <th>Nombre</th>
-    <th>Descripcion</th>
-    <th>Documentoimg</th>
-    <th>Tipoformato</th>
-    <th>Archivo</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div class="page-header">
+    <h1>Lista de Documentos</h1>
+</div>
+ 
+<ul class="thumbnails">
 <% @documentos.each do |documento| %>
-  <tr>
-    <td><%= documento.nombre %></td>
-    <td><%= documento.descripcion %></td>
-    <td><%= documento.documentoimg %></td>
-    <td><%= documento.tipoformato %></td>
-    <td><%= documento.archivo_id %></td>
-    <td><%= link_to 'Show', documento %></td>
-    <td><%= link_to 'Edit', edit_documento_path(documento) %></td>
-    <td><%= link_to 'Destroy', documento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <li class="span2">
+      <a href="#" class="thumbnail">
+        <%= image_tag "#{documento.documentoimg}" %>
+      </a>
+  </li>
 <% end %>
-</table>
+</ul>
 
-<br />
 
-<%= link_to 'New Documento', new_documento_path %>
+<div class="form-actions">
+  <%= link_to 'Nuevo Documento', "/documentos/new?aid=#{params[:aid]}", :class => "btn btn-primary" %>
+</div>

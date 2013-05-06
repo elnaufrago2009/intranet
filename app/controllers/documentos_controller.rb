@@ -1,8 +1,10 @@
 class DocumentosController < ApplicationController
   # GET /documentos
   # GET /documentos.json
+  layout "front_end"
   def index
     @documentos = Documento.all
+    @documentos = Documento.paginate(:page => params[:page], :per_page => 10, :conditions => ['archivo_id = ?', "#{params[:aid]}"]).order("id Desc")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,7 +46,7 @@ class DocumentosController < ApplicationController
 
     respond_to do |format|
       if @documento.save
-        format.html { redirect_to @documento, notice: 'Documento was successfully created.' }
+        format.html { redirect_to "/documentos?aid=#{params[:documento][:archivo_id]}", notice: 'Documento was successfully created.' }
         format.json { render json: @documento, status: :created, location: @documento }
       else
         format.html { render action: "new" }
