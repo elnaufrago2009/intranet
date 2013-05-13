@@ -22,9 +22,10 @@ end
 
 gem 'jquery-rails'
 gem 'bootstrap-sass'
-gem 'carrierwave'
 gem 'rmagick'
+gem 'carrierwave'
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

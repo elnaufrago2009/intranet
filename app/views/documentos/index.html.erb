@@ -1,18 +1,27 @@
+<ul class="breadcrumb">
+  <li><a href="/">Inicio</a> <span class="divider">/</span></li>
+  <li><a href="/archivos">Archivos</a> <span class="divider">/</span></li>
+  <li class="active"><%= @archivo.nombre %></li>
+</ul>
+
 <div class="page-header">
-    <h1>Lista de Documentos</h1>
+    <h1><%= @archivo.nombre %> <small>creado: <%= @archivo.created_at.strftime("%d %b. %Y") %></small></h1>
 </div>
  
 <ul class="thumbnails">
+<% i = 1 %>
 <% @documentos.each do |documento| %>
   <li class="span2">
-      <a href="#" class="thumbnail">
-        <%= image_tag "#{documento.documentoimg}" %>
+      <a href="/documentos/ver?aid=<%= params[:aid] %>&id=<%= documento.id %>&page=<%= i %>" class="thumbnail">
+        <%= image_tag documento.documentoimg.url(:thumb) %>
       </a>
+      <p style="text-align: center;"><%= i %></p>
   </li>
+  <% i=i+1 %>
 <% end %>
 </ul>
 
 
 <div class="form-actions">
-  <%= link_to 'Nuevo Documento', "/documentos/new?aid=#{params[:aid]}", :class => "btn btn-primary" %>
+  <%= link_to 'Agregar +', "/documentos/new?aid=#{params[:aid]}", :class => "btn btn-primary" %>
 </div>

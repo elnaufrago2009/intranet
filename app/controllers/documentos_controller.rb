@@ -2,9 +2,10 @@ class DocumentosController < ApplicationController
   # GET /documentos
   # GET /documentos.json
   layout "front_end"
+
   def index
-    @documentos = Documento.all
-    @documentos = Documento.paginate(:page => params[:page], :per_page => 10, :conditions => ['archivo_id = ?', "#{params[:aid]}"]).order("id Desc")
+    @documentos = Documento.paginate(:page => params[:page], :per_page => 10, :conditions => ['archivo_id = ?', "#{params[:aid]}"]).order("id Asc")
+    @archivo = Archivo.find(params[:aid])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +16,19 @@ class DocumentosController < ApplicationController
   # GET /documentos/1
   # GET /documentos/1.json
   def show
+
     @documento = Documento.find(params[:id])
+    @archivo = Archivo.find(params[:aid])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @documento }
+    end
+  end
+
+  def ver
+    @documento = Documento.paginate(:page => params[:page], :per_page => 1, :conditions => ['archivo_id = ?', "#{params[:aid]}"])
+    @archivo = Archivo.find(params[:aid])
 
     respond_to do |format|
       format.html # show.html.erb

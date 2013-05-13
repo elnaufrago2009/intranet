@@ -5,7 +5,11 @@ Intranet::Application.routes.draw do
   resources :archivos
 
 
+
+  get "/documentos/ver"
   resources :documentos
+
+
 
 
   # The priority is based upon order of creation:
