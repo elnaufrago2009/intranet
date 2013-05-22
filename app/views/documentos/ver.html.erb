@@ -5,12 +5,33 @@
   <li class="active">Pagina <%= params[:page] %></li>
 </ul>
 
-<%= will_paginate @documento, :renderer => BootstrapPagination::Rails %>
+<div class="page-header">
+  <h1><%= @archivo.nombre %> <small>Pagina <%= params[:page] %></small></h1>
+</div>
+<% unless !notice %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h4><%= notice %>!</h4>
+    </div>
+<% end %>
+
+<div class="pagination-large pagination-centered">
+  <%= will_paginate @documento, :renderer => BootstrapPagination::Rails %>
+</div>
+
 
 <div class="row">
-  <div class="span12">
-    <%= image_tag @documento[0].documentoimg %>
+  <div class="span12 pagination-centered">
+    <%= image_tag @documento[0].documentoimg.url(:acuatro), :class => "img-polaroid" %>
   </div>
 </div>
 
-<%= will_paginate @documento, :renderer => BootstrapPagination::Rails %>
+<div class="pagination-large pagination-centered">
+  <%= will_paginate @documento, :renderer => BootstrapPagination::Rails %>
+</div>
+
+<div class="pull-right">
+  <%= link_to "Editar", "/documentos/#{@documento[0].id}/edit?aid=#{params[:aid]}&id=#{@documento[0].id}&page=#{params[:page]}", :class => "btn btn-primary" %>
+</div>
+<br>
+<br>

@@ -24,8 +24,8 @@ class DocumentoimgUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [260, 350]
   end
 
-   version :a4 do
-     process :resize_to_fill => [595, 842]
+   version :acuatro do
+     process :resize_to_fill => [793, 1122]
    end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

@@ -3,7 +3,7 @@ class ArchivosController < ApplicationController
   # GET /archivos.json
   layout "front_end"
   def index
-    @archivos = Archivo.all
+    @archivos = Archivo.order("id Desc").all
 
     respond_to do |format|
       format.html # index.html.erb

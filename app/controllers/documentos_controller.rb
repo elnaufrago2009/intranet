@@ -50,6 +50,7 @@ class DocumentosController < ApplicationController
   # GET /documentos/1/edit
   def edit
     @documento = Documento.find(params[:id])
+    @archivo = Archivo.find(params[:aid])
   end
 
   # POST /documentos
@@ -75,7 +76,7 @@ class DocumentosController < ApplicationController
 
     respond_to do |format|
       if @documento.update_attributes(params[:documento])
-        format.html { redirect_to @documento, notice: 'Documento was successfully updated.' }
+        format.html { redirect_to "/documentos/ver?aid=#{params[:paso][:aid]}&page=#{params[:paso][:page]}", notice: 'La Pagina ha sido Actualizada Correctamente.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

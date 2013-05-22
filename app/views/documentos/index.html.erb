@@ -12,7 +12,7 @@
 <% i = 1 %>
 <% @documentos.each do |documento| %>
   <li class="span2">
-      <a href="/documentos/ver?aid=<%= params[:aid] %>&id=<%= documento.id %>&page=<%= i %>" class="thumbnail">
+      <a href="/documentos/ver?aid=<%= params[:aid] %>&page=<%= i %>" class="thumbnail">
         <%= image_tag documento.documentoimg.url(:thumb) %>
       </a>
       <p style="text-align: center;"><%= i %></p>
@@ -23,5 +23,6 @@
 
 
 <div class="form-actions">
+  <%= link_to 'Regresar', "/archivos", :class => "btn btn-primary" %>
   <%= link_to 'Agregar +', "/documentos/new?aid=#{params[:aid]}", :class => "btn btn-primary" %>
 </div>
