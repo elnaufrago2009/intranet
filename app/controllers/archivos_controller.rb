@@ -9,7 +9,7 @@ class ArchivosController < ApplicationController
     @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
   elsif params[:nombre].blank? && !params[:created_at].blank? && !params[:updated_at].blank?
     @buscar = 'si existen solo fechas'
-    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['created_at >= ? AND updated_at < ?' , "%#{params[:created_at]}%", "%#{params[:updated_at]}%"]).order("id Desc")
   elsif !params[:nombre].blank? && params[:created_at].blank? && params[:updated_at].blank?
     @buscar = 'existe solo nombre'
     @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
