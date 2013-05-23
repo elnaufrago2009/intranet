@@ -26,6 +26,7 @@ gem 'rmagick'
 gem 'carrierwave'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'bootstrap-datepicker-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -3,7 +3,32 @@ class ArchivosController < ApplicationController
   # GET /archivos.json
   layout "front_end"
   def index
+
+  if !params[:nombre].blank? && !params[:created_at].blank? && !params[:updated_at].blank?
+    @buscar = 'si existen los 3'
     @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+  elsif params[:nombre].blank? && !params[:created_at].blank? && !params[:updated_at].blank?
+    @buscar = 'si existen solo fechas'
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+  elsif !params[:nombre].blank? && params[:created_at].blank? && params[:updated_at].blank?
+    @buscar = 'existe solo nombre'
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+  elsif params[:nombre].blank? && params[:created_at].blank? && params[:updated_at].blank?
+    @buscar = 'ninguno'
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+  elsif params[:nombre].blank? && !params[:created_at].blank? && params[:updated_at].blank?
+    @buscar = 'solo Inicio'
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+  elsif params[:nombre].blank? && params[:created_at].blank? && !params[:updated_at].blank?
+    @buscar = 'solo Final'
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+  elsif !params[:nombre].blank? && !params[:created_at].blank? && params[:updated_at].blank?
+    @buscar = 'nombre y created'
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+  elsif !params[:nombre].blank? && params[:created_at].blank? && !params[:updated_at].blank?
+    @buscar = 'nombre y updated'
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+  end
 
     respond_to do |format|
       format.html # index.html.erb

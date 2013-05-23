@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require front_end
+ *= require bootstrap-datepicker
  *= require file_upload
  */
