@@ -3,7 +3,7 @@ class ArchivosController < ApplicationController
   # GET /archivos.json
   layout "front_end"
   def index
-    @archivos = Archivo.order("id Desc").all
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
 
     respond_to do |format|
       format.html # index.html.erb

@@ -3,6 +3,20 @@
 </div>
 
 <div class="row">
+    <div class="span7">
+      <%= form_for(archivos_path, :html=>{:class=>"form-search"}, :method => "get") do |f| %>
+          <div class="input-append">
+            <%= text_field_tag :nombre, params[:nombre], :class =>"span3 search-query", :placeholder=>"Buscar" %>
+            <button type="submit" class="btn"><i class="icon-search"></i> Buscar</button>
+          </div>
+      <% end %>
+    </div>
+    <div class="span5">
+      <div class="pagination-right">
+        <%= will_paginate @archivos, :renderer => BootstrapPagination::Rails %>
+      </div>
+    </div>
+
 <div class="span12">
 
 
