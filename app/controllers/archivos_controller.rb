@@ -6,28 +6,28 @@ class ArchivosController < ApplicationController
 
   if !params[:nombre].blank? && !params[:created_at].blank? && !params[:updated_at].blank?
     @buscar = 'si existen los 3'
-    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ? and created_at between ? and ?', "%#{params[:nombre]}%" , "#{params[:created_at]}", "#{params[:updated_at]}"]).order("id Desc")
   elsif params[:nombre].blank? && !params[:created_at].blank? && !params[:updated_at].blank?
     @buscar = 'si existen solo fechas'
-    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['created_at >= ? AND updated_at < ?' , "%#{params[:created_at]}%", "%#{params[:updated_at]}%"]).order("id Desc")
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['created_at between ? and ?' , "#{params[:created_at]}", "#{params[:updated_at]}"]).order("id Desc")
   elsif !params[:nombre].blank? && params[:created_at].blank? && params[:updated_at].blank?
     @buscar = 'existe solo nombre'
     @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
   elsif params[:nombre].blank? && params[:created_at].blank? && params[:updated_at].blank?
     @buscar = 'ninguno'
-    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4).order("id Desc")
   elsif params[:nombre].blank? && !params[:created_at].blank? && params[:updated_at].blank?
     @buscar = 'solo Inicio'
-    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['created_at >= ?',"#{params[:created_at]}"]).order("id Desc")
   elsif params[:nombre].blank? && params[:created_at].blank? && !params[:updated_at].blank?
     @buscar = 'solo Final'
-    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['created_at <= ?', "#{params[:updated_at]}"]).order("id Desc")
   elsif !params[:nombre].blank? && !params[:created_at].blank? && params[:updated_at].blank?
     @buscar = 'nombre y created'
-    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ? and created_at > ?', "%#{params[:nombre]}%", "#{params[:created_at]}"]).order("id Desc")
   elsif !params[:nombre].blank? && params[:created_at].blank? && !params[:updated_at].blank?
     @buscar = 'nombre y updated'
-    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ?', "%#{params[:nombre]}%"]).order("id Desc")
+    @archivos = Archivo.paginate(:page => params[:page], :per_page => 4, :conditions => ['lower (nombre) like ? and created_at < ?', "%#{params[:nombre]}%", "#{params[:updated_at]}"]).order("id Desc")
   end
 
     respond_to do |format|
